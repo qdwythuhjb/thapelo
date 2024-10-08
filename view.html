@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View CV - thapelo nephiphidi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #002366;
+            margin-bottom: 20px;
+        }
+        .cv-container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .cv-section {
+            margin-bottom: 20px;
+        }
+        .cv-section h2 {
+            color: #002366;
+            margin-bottom: 10px;
+            font-size: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .cv-section p {
+            margin: 5px 0;
+        }
+        .nav-back {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #002366;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #001a4d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your CV</h1>
+    <div class="cv-container">
+        <div class="cv-section" id="personalDetails">
+            <h2>Personal Details</h2>
+            <p id="cvName"></p>
+            <p id="cvEmail"></p>
+            <p id="cvPhone"></p>
+        </div>
+
+        <div class="cv-section" id="educationDetails">
+            <h2>Education</h2>
+            <p id="cvEducation"></p>
+        </div>
+
+        <div class="cv-section" id="workDetails">
+            <h2>Work Experience</h2>
+            <p id="cvWorkExperience"></p>
+        </div>
+
+        <div class="cv-section" id="skillsDetails">
+            <h2>Skills</h2>
+            <p id="cvSkills"></p>
+        </div>
+    </div>
+
+    <div class="nav-back">
+        <a href="index.html" class="btn">Back to Navigation</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const cvData = JSON.parse(localStorage.getItem('cvData'));
+            if (cvData) {
+                document.getElementById('cvName').textContent = `Name: ${cvData.name || ''}`;
+                document.getElementById('cvEmail').textContent = `Email: ${cvData.email || ''}`;
+                document.getElementById('cvPhone').textContent = `Phone: ${cvData.phone || ''}`;
+                document.getElementById('cvEducation').textContent = `${cvData.education || ''}`;
+                document.getElementById('cvWorkExperience').textContent = `${cvData.workExperience || ''}`;
+                document.getElementById('cvSkills').textContent = `${cvData.skills || ''}`;
+            }
+        };
+    </script>
+</body>
+</html>

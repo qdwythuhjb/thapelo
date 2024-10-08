@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - thapelo nephphidi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image:url('imagin.jpg');
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #002366;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #002366;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #001a4d;
+        }
+        .nav-back {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Skills</h1>
+    <form id="skillsForm">
+        <label for="skills">Skills</label>
+        <textarea id="skills" rows="5" required></textarea>
+
+        <button type="submit" class="btn">Save Skills</button>
+    </form>
+
+    <div class="nav-back">
+        <a href="index.html" class="btn">Back to Navigation</a>
+    </div>
+
+    <script>
+        const skillsForm = document.getElementById('skillsForm');
+
+        window.onload = function() {
+            const cvData = JSON.parse(localStorage.getItem('cvData'));
+            if (cvData && cvData.skills) {
+                document.getElementById('skills').value = cvData.skills;
+            }
+        };
+
+        skillsForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const skills = document.getElementById('skills').value;
+
+            let cvData = JSON.parse(localStorage.getItem('cvData')) || {};
+            cvData.skills = skills;
+
+            localStorage.setItem('cvData', JSON.stringify(cvData));
+            alert("Skills Saved!");
+        });
+    </script>
+</body>
+</html>

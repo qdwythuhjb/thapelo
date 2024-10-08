@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Kutlwano Luka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image :url('imagin.jpg');
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #002366;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #002366;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #001a4d;
+        }
+        .nav-back {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Education</h1>
+    <form id="educationForm">
+        <label for="education">Education</label>
+        <textarea id="education" rows="5" required></textarea>
+
+        <button type="submit" class="btn">Save Education</button>
+    </form>
+
+    <div class="nav-back">
+        <a href="index.html" class="btn">Back to Navigation</a>
+    </div>
+
+    <script>
+        const educationForm = document.getElementById('educationForm');
+
+        // Load existing education from localStorage
+        window.onload = function() {
+            const cvData = JSON.parse(localStorage.getItem('cvData'));
+            if (cvData && cvData.education) {
+                document.getElementById('education').value = cvData.education;
+            }
+        };
+
+        educationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const education = document.getElementById('education').value;
+
+            let cvData = JSON.parse(localStorage.getItem('cvData')) || {};
+            cvData.education = education;
+
+            localStorage.setItem('cvData', JSON.stringify(cvData));
+            alert("Education Saved!");
+        });
+    </script>
+</body>
+</html>
